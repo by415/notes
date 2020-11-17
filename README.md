@@ -5,11 +5,17 @@
 
 1. 结构
 ```
-notes/    //仓库名称为笔记
-├── docker    //笔记子模块
-├── golang    //笔记子模块
-│   ├── 1.golangnote.md     //子模块笔记
-│   └── .images             //子模块图片资源
+notes
+├── docker      
+├── golang                  //笔记子模块
+│   ├── 1.routine.md        //子模块笔记，笔记中通过[demo](demo/test_routine)
+│   └── demo                //每一个子模块目录中都有个demo目录
+│   │   └── test_routine    //对应某一个笔记的demo
+│   │       └── main.go
+│   └── images              //笔记引用的静态资源
+└── k8s
+
+│ 
 └── k8s
 ```
 
