@@ -9,7 +9,7 @@ notes/    //仓库名称为笔记
 ├── docker    //笔记子模块
 ├── golang    //笔记子模块
 │   ├── 1.golangnote.md     //子模块笔记
-│   └── picture             //子模块图片资源
+│   └── .images             //子模块图片资源
 └── k8s
 ```
 
