@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"practice/test_go/init"
+	"test_go/init"
 	"time"
 )
 
