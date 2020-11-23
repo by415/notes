@@ -8,6 +8,8 @@
 - *[切片(list)](0006slice.md)*
 - *[结构(struct)](0007struct.md)*
 - *[函数(function)](0008function.md)*
+- *[错误和异常(error)](0009error.md)*
+- *[modules版本管理(mod)](0010go-modules包管理.md)*
 - *[golang 常见解决方案](0099solution.md)*
 
 ---
