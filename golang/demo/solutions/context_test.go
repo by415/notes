@@ -178,7 +178,7 @@ func test05(ctx context.Context) {
 	test06 := func(ctx context.Context) {
 		fmt.Println("inner funcName = ", runFuncName())
 		PrintCtxValue(AppendContextValue(ctx, "func", runFuncName()))
-		fmt.Printf("%s",debug.Stack())
+		fmt.Printf("%s", debug.Stack())
 	}
 	go test06(AppendContextValue(ctx, "func", runFuncName()))
 }
@@ -202,4 +202,54 @@ func TestWithValue3(t *testing.T) {
 		}
 	}(ctx)
 	time.Sleep(20 * time.Second)
+}
+
+func TestChildrenCanel(t *testing.T) {
+	ctx, canel := context.WithTimeout(context.Background(), time.Second*2)
+	go func(ctx context.Context) {
+		go func(ctx context.Context) {
+			/// 使用子context 处理下一个go 。依旧可以退出的
+			ctx1, _ := context.WithTimeout(ctx, time.Second*2)
+			go func(ctx4 context.Context) {
+				fmt.Println(runtime.NumGoroutine())
+				for true {
+					select {
+					case <-ctx4.Done():
+						fmt.Println("func3 return")
+						return
+					default:
+					}
+					time.Sleep(2 * time.Second)
+					fmt.Println("func3")
+				}
+			}(ctx1)
+			time.Sleep(2 * time.Second)
+			fmt.Println(runtime.NumGoroutine())
+			for true {
+				select {
+				case <-ctx.Done():
+					fmt.Println("func2 return")
+					return
+				default:
+				}
+				time.Sleep(2 * time.Second)
+				fmt.Println("func2")
+			}
+		}(ctx)
+		for true {
+			select {
+			case <-ctx.Done():
+				fmt.Println("func1 return")
+				return
+			default:
+			}
+			time.Sleep(2 * time.Second)
+			fmt.Println("func1")
+		}
+	}(ctx)
+	time.Sleep(10 * time.Second)
+	canel()
+	fmt.Println(runtime.NumGoroutine())
+	time.Sleep(4 * time.Second)
+	fmt.Println("end")
 }
