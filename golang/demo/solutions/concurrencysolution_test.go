@@ -11,14 +11,27 @@ import (
 
 /// channel 关闭，需要
 func TestChClose(t *testing.T) {
-	ch := make(chan int)
-	close(ch)
+	ch := make(chan int, 5)
+	go func() {
+		ch <- 222
+		ch <- 4
+		ch <- 6
+		ch <- 6
+		close(ch)
+
+		//panic: send on closed channel
+		//ch <- 6
+		//ch <- 6
+	}()
 	fmt.Println(<-ch)
 
-	if _, ok := <-ch; ok {
-		fmt.Println(ok)
-	} else {
-		fmt.Println("closed")
+	//if _, ok := <-ch; ok {
+	//	fmt.Println(ok)
+	//} else {
+	//	fmt.Println("closed")
+	//}
+	for i := 0; i < 10; i++ {
+		fmt.Println(<-ch)
 	}
 }
 
@@ -124,12 +137,12 @@ func TestEndNotice(t *testing.T) {
 		Label:
 			for true {
 				select {
-				case ch <- rand.Int():
-
 				case <-done: /// 增加一路监听，监听推出通知信号
 					break Label
+				case ch <- rand.Int():
 				}
 			}
+			close(ch)
 		}()
 		return ch
 	}
@@ -139,11 +152,20 @@ func TestEndNotice(t *testing.T) {
 
 	fmt.Println(<-ch)
 	fmt.Println(<-ch)
-
-	close(done)
-
 	fmt.Println(<-ch)
 	fmt.Println(<-ch)
+
+	//// 这两个有啥差别.
+	// 验证结果，close有问题； 如下 03 概率出现true。
+	//close(done)
+	done <- struct{}{}
+
+	// 03
+	_, ok := <-ch
+	fmt.Println(ok)
+	// 04
+	_, ok = <-ch
+	fmt.Println(ok)
 
 	fmt.Println("NumGoroutine = ", runtime.NumGoroutine())
 }
