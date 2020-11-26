@@ -9,6 +9,7 @@
 - *[结构(struct)](0007struct.md)*
 - *[函数(function)](0008function.md)*
 - *[反射(reflect)](0011reflect.md)*
+- *[语言陷阱](0012guifan.md)*
 - *[golang 常见解决方案](0099solution.md)*
 
 ---
