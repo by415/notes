@@ -3,6 +3,7 @@ package solutions
 import (
 	"context"
 	"fmt"
+	"reflect"
 	"runtime"
 	"runtime/debug"
 	"testing"
@@ -252,4 +253,18 @@ func TestChildrenCanel(t *testing.T) {
 	fmt.Println(runtime.NumGoroutine())
 	time.Sleep(4 * time.Second)
 	fmt.Println("end")
+}
+
+func test(t string){
+	var i =0
+	for true {
+		i=i+1
+		fmt.Println(t,i)
+	}
+}
+
+func TestGoThread(t *testing.T) {
+	go test("a")
+	go test("b")
+
 }
