@@ -34,7 +34,7 @@ x,y = y,x
 ```
 ```go
 
-	/// 合理作为参数传递
+	/// 合理的是作为参数传递
 	for i, v := range si {
 		wg.Add(1)
 		go func(i,v int) {
@@ -49,7 +49,7 @@ x,y = y,x
 ```go
 func f()(r int)
 
-函数 有名返回值 r 是被分配在栈上的。defer 作为函数的闭包函数\，拥有对r的引用操作。 在defer中操作r会影响实际返回值的
+函数 有名返回值 r 是被分配在栈上的。defer 作为函数的闭包函数，拥有对r的引用操作。 在defer中操作r会影响实际返回值的
 
 具体参考code
 
@@ -213,12 +213,6 @@ Go标准库就是遵循这样的设计
 #### 对于接口的明确实现
 
 期望结构实现某接口，将未实现当成错误暴漏在编译器,以下 2选1
-```go
-var (
-	_               = MyTestStruct.test  /// MyTestStruct.test undefined (type MyTestStruct has no method test)
-	_ InterfaceTest = MyTestStruct{} 	///cannot use MyTestStruct literal (type MyTestStruct) as type InterfaceTest in assignment:	MyTestStruct does not implement InterfaceTest (missing test method)
-)
-```
 
 ```go
 type InterfaceTest interface {
