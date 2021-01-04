@@ -1,4 +1,4 @@
-package referencevalue_test
+package main
 
 import (
 	"fmt"
@@ -25,7 +25,7 @@ func TestReference(t *testing.T) {
 // 所有一个slice类型占24个字节
 func TestSizeofSlice(t *testing.T) {
 	fmt.Println(unsafe.Sizeof([]string{})) //24
-	var a int = 8
+	a := 8
 	b := &a
 	fmt.Println(unsafe.Sizeof(b)) //8
 }
