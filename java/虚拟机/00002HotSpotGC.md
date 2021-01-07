@@ -102,7 +102,7 @@ eg: HotSpot解决方案中，
 
 - Region的大小可以通过-XX:G1HeapRegionSize参数指定，如果没有显示指定，则G1会计算出一个合理的大小。Region的取值范围为1M~32M，且应为2的N次幂，所以Region的大小只能是1M、2M、4M、8M、16M、32M。比如-Xmx=16g -Xms=16g，则Region的大小等于16G / 2048=8M。也可以推理出G1推荐的管理的最大堆内存是64G。
 
-![image-Region](demo/picture/Region.png)
+![image-Region](../demo/picture/Region.png)
 
 #### RSet(Remembered Set、记忆集)
 
@@ -118,12 +118,12 @@ eg: HotSpot解决方案中，
   
 - 比如G1默认的Region有2048个，默认每个Region为2M，那每个Region对应的Card的每个元素对应的卡页的大小为2M / 512=4K，即这4K内存中只要有一个或一个以上的对象存在着跨Region对年轻代的引用，这个卡页对应的Card的元素值为1。
 
-![image-CardTable](demo/picture/CardTable.png)
+![image-CardTable](../demo/picture/CardTable.png)
 
 
 ---
-*[👈 0003 虚拟机](0003虚拟机.md)*
+*[👈 0003 虚拟机](../0003虚拟机.md)*
 
-*[👈 0000 java](0000java.md)*
+*[👈 0000 Java目录](../0000Java目录.md)*
 
-*[415 出品，必属精品](../note.md)*
+*[415 出品，必属精品](../../note.md)*
