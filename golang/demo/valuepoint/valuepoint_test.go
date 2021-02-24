@@ -1,4 +1,4 @@
-package main
+package referencevalue_test
 
 import (
 	"fmt"
