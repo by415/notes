@@ -1,11 +1,11 @@
-### iptables（二）使用
-#### 命令格式
+## iptables（二）使用
+### 命令格式
 iptables [-t 表名] 命令选项 ［链名］ ［条件匹配］ ［-j 目标动作或跳转］
 ![](images/iptables使用.png)
 
 ![](images/iptablesparm.png)
 
-##### 管理控制选项
+#### 管理控制选项
 -A  在指定链的末尾添加（append）一条新的规则
 -D  删除（delete）指定链中的某一条规则，可以按规则序号和内容删除
 -I  在指定链中插入（insert）一条新的规则，默认在第一行添加
@@ -23,13 +23,13 @@ iptables [-t 表名] 命令选项 ［链名］ ［条件匹配］ ［-j 目标�
 -V  查看版本(version)
 -h  获取帮助（help）
 
-##### 目标动作或跳转
+#### 目标动作或跳转
 ACCEPT 允许数据包通过
 DROP 直接丢弃数据包，不给任何回应信息
 REJECT 拒绝数据包通过，必要时会给数据发送端一个响应的信息。
 LOG在/var/log/messages文件中记录日志信息，然后将数据包传递给下一条规则
 
-##### 匹配条件
+#### 匹配条件
 常用条件如下：
 参数 -p, --protocol
 参数 -s, --src, --source
@@ -58,7 +58,7 @@ iptables -p icmp --help 可以查看具体哪些参数可用
 详细参考
 https://www.cnblogs.com/fanweisheng/p/11130208.html
 
-##### iptables防火墙规则的保存与恢复
+#### iptables防火墙规则的保存与恢复
 iptables-save把规则保存到文件中，再由目录rc.d下的脚本（/etc/rc.d/init.d/iptables）自动装载。
 使用命令iptables-save来保存规则。一般用
 ```
@@ -72,7 +72,7 @@ service iptables save
 当计算机启动时，rc.d下的脚本将用命令iptables-restore调用这个文件，从而就自动恢复了规则。
 
 
-#### iptables防火墙常用策略
+### iptables防火墙常用策略
 拒绝进入防火墙的所有ICMP协议数据包
 ```
 iptables -I INPUT -p icmp -j REJECT
@@ -153,7 +153,7 @@ iptables -I INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
 iptables -P INPUT DROP
 ```
 
-#### 常用的iptables规则
+### 常用的iptables规则
 删除所有
 ```
 iptables -F
@@ -168,7 +168,7 @@ iptables -P OUTPUT DROP
 https://www.jianshu.com/p/ee4ee15d3658
 
 
-#### 自定义规则链
+### 自定义规则链
 在filter表新增规则链
 ```
 iptables -t filter -N newChan
