@@ -10,6 +10,8 @@
 - *[Spring中的Qualifier应用](SpringFramework/00008.md)*
 - *[Spring中的ApplicationContext启动过程详解](SpringFramework/00009.md)*
 - *[Spring解析配置类以及扫描源码解析](SpringFramework/000010.md)*
+- *[字节码增强](SpringFramework/000011.md)*
+- *[Spring推断构造方法](SpringFramework/000012.md)*
 
 
 
